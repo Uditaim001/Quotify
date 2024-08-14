@@ -39,16 +39,16 @@ public class MainActivity3 extends AppCompatActivity {
         });
         generate=findViewById(R.id.button3);
         editText=findViewById(R.id.editTextNumber);
-//        if(editText.length()>0){
-//
-//        }
-//        int num= Integer.parseInt(editText.getText().toString());
-        generate.setOnClickListener(new View.OnClickListener() {
 
+
+        generate.setOnClickListener(new View.OnClickListener() {
+//            int num;
             @Override
             public void onClick(View view) {
                 Intent intent= new Intent(MainActivity3.this, MainActivity4.class);
-
+//                if(editText.length()>0){
+//                     num= Integer.parseInt(editText.getText().toString());
+//                }
                 intent.putExtra("num",10);
                 startActivity(intent);
             }

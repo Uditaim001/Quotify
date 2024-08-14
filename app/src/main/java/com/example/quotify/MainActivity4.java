@@ -22,11 +22,12 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public class MainActivity4 extends AppCompatActivity {
     interface MultipleQuotes{
-        @GET("/quotes/random?limit={num}")
-        Call<List<model>> getmdata(@Path("num") int num);
+        @GET("/quotes/random")
+        Call<List<model>> getmdata(@Query("limit") int num);
     }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +49,7 @@ public class MainActivity4 extends AppCompatActivity {
                 .baseUrl("https://api.quotable.io")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
-
+        ListView listView = findViewById(R.id.listview);
         MultipleQuotes multipleQuotes = retrofit.create(MultipleQuotes.class);
         multipleQuotes.getmdata(num).enqueue(new Callback<List<model>>() {
             @Override
@@ -62,7 +63,7 @@ public class MainActivity4 extends AppCompatActivity {
                     quotesList.add(quote + "\n— " + author);
                 }
 
-                ListView listView = findViewById(R.id.listview);
+
 
                 ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(
                         MainActivity4.this,
@@ -76,7 +77,7 @@ public class MainActivity4 extends AppCompatActivity {
             @Override
             public void onFailure(Call<List<model>> call, Throwable throwable) {
                 // Handle failure
-                Toast.makeText(MainActivity4.this, "Failed", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity4.this, throwable.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
