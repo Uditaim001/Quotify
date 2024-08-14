@@ -42,14 +42,14 @@ public class MainActivity3 extends AppCompatActivity {
 
 
         generate.setOnClickListener(new View.OnClickListener() {
-//            int num;
+            int num=1;
             @Override
             public void onClick(View view) {
                 Intent intent= new Intent(MainActivity3.this, MainActivity4.class);
-//                if(editText.length()>0){
-//                     num= Integer.parseInt(editText.getText().toString());
-//                }
-                intent.putExtra("num",10);
+                if(editText.length()>0){
+                     num= Integer.parseInt(editText.getText().toString());
+                }
+                intent.putExtra("num",num);
                 startActivity(intent);
             }
         });
